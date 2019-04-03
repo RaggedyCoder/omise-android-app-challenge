@@ -1,0 +1,119 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.3.21'
+
+    def appPropertiesFile = rootProject.file("app-settings.properties")
+    def appProperties = new Properties()
+    appProperties.load(new FileInputStream(appPropertiesFile))
+
+    ext.versions = [
+            'kotlinVersion'        : appProperties.KOTLIN_VERSION,
+            'versionName'          : appProperties.APP_VERSION_NAME,
+            'minSdk'               : appProperties.SDK_MIN_VERSION as int,
+            'versionCode'          : appProperties.APP_VERSION_CODE as int,
+            'targetSdk'            : appProperties.SDK_TARGET_VERSION as int,
+            'compileSdk'           : appProperties.SDK_COMPILE_VERSION as int,
+            'sourceCompatibility'  : JavaVersion.valueOf(appProperties.JAVA_COMPATIBILITY_SOURCE),
+            'targetCompatibility'  : JavaVersion.valueOf(appProperties.JAVA_COMPATIBILITY_TARGET),
+            // core library versions
+            'coreKtx'              : appProperties.LIBRARY_ANDROIDX_CORE_KTX_VERSION,
+            'cardView'             : appProperties.LIBRARY_ANDROIDX_CARD_VIEW_VERSION,
+            'multidex'             : appProperties.LIBRARY_ANDROIDX_MULTI_DEX_VERSION,
+            'recyclerView'         : appProperties.LIBRARY_ANDROIDX_RECYCLER_VIEW_VERSION,
+            'vectorDrawable'       : appProperties.LIBRARY_ANDROIDX_VECTOR_DRAWABLE_VERSION,
+            'constraintLayout'     : appProperties.LIBRARY_ANDROIDX_CONSTRAINT_LAYOUT_VERSION,
+            'appCompat'            : appProperties.LIBRARY_ANDROIDX_ANDROIDX_APPCOMPAT_VERSION,
+            'recyclerViewSelection': appProperties.LIBRARY_ANDROIDX_RECYCLER_VIEW_SELECTION_VERSION,
+
+            // arch component versions
+            'paging'               : appProperties.LIBRARY_ANDROID_ARCH_PAGING_VERSION,
+            'navigation'           : appProperties.LIBRARY_ANDROID_ARCH_NAVIGATION_VERSION,
+            'lifecycleExt'         : appProperties.LIBRARY_ANDROID_ARCH_LIFECYCLE_EXT_VERSION,
+
+            'retrofit'             : appProperties.LIBRARY_RETROFIT_VERSION,
+
+            'glide'                : appProperties.LIBRARY_GLIDE_VERSION,
+
+            'dagger'               : appProperties.LIBRARY_DAGGER_VERSION,
+
+            'omise'                : appProperties.LIBRARY_OMISE_VERSION,
+
+            'junit'                : appProperties.TEST_LIBRARY_JUNIT_VERSION,
+            'testRunner'           : appProperties.TEST_LIBRARY_ANDROIDX_RUNNER_VERSION,
+            'espresso'             : appProperties.TEST_LIBRARY_ESPRESSO_VERSION,
+
+            'gradleBuildCore'      : appProperties.BUILD_LIBRARY_ANDROID_GRADLE_TOOL_CORE_VERSION,
+
+            'navigationSafeArgs'   : appProperties.LIBRARY_ANDROID_NAVIGATION_SAFE_ARGS_VERSION,
+    ]
+
+    ext.deps = [
+            coreKtx                : "androidx.core:core-ktx:${versions.coreKtx}",
+            multidex               : "androidx.multidex:multidex:${versions.multidex}",
+            appCompat              : "androidx.appcompat:appcompat:${versions.appCompat}",
+            kotlinLibrary          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlinVersion}",
+
+            cardView               : "androidx.cardview:cardview:${versions.cardView}",
+            recyclerview           : "androidx.recyclerview:recyclerview:${versions.recyclerView}",
+            vectordrawable         : "androidx.vectordrawable:vectordrawable:${versions.vectorDrawable}",
+            constraintlayout       : "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}",
+            recyclerViewSelection  : "androidx.recyclerview:recyclerview-selection:${versions.recyclerViewSelection}",
+            constraintlayoutSolver : "androidx.constraintlayout:constraintlayout-solver:${versions.constraintLayout}",
+
+            paging                 : "androidx.paging:paging-runtime-ktx:${versions.paging}",
+            navigationKtx          : "android.arch.navigation:navigation-ui-ktx:${versions.navigation}",
+            lifecycleExt           : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycleExt}",
+            navigation             : "android.arch.navigation:navigation-fragment-ktx:${versions.navigation}",
+
+            'retrofit'             : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            'retrofitGsonConverter': "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+
+            'glide'                : "com.github.bumptech.glide:glide:${versions.glide}",
+
+            'omise'                : "co.omise:omise-android:${versions.omise}",
+
+            'daggerAndroid'        : "com.google.dagger:dagger-android:${versions.dagger}",
+            'daggerAndroidSupport' : "com.google.dagger:dagger-android-support:${versions.dagger}",
+    ]
+    ext.processors = [
+            'glideCompiler'         : "com.github.bumptech.glide:compiler:${versions.glide}",
+
+            'daggerCompiler'        : "com.google.dagger:dagger-compiler:${versions.dagger}",
+            'daggerAndroidProcessor': "com.google.dagger:dagger-android-processor:${versions.dagger}",
+    ]
+
+    ext.tests = [
+            'junit': "junit:junit:${versions.junit}",
+    ]
+
+    ext.androidTests = [
+            'testRunner': "androidx.test:runner:${versions.testRunner}",
+            'espresso'  : "androidx.test.espresso:espresso-core:${versions.espresso}",
+    ]
+
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:${versions.gradleBuildCore}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlinVersion}"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigationSafeArgs}"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

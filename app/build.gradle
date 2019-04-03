@@ -1,0 +1,115 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt' // kotlin annotation processors
+apply plugin: "androidx.navigation.safeargs.kotlin"
+def keystorePropertiesFile = rootProject.file("../Omise KeyStore/keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        applicationId "co.omise.android.charity"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def buildVariant = getBuildVariant().toLowerCase()
+        def envPropertiesFile = rootProject.file("${buildVariant}.properties")
+        def envProperties = new Properties()
+        envProperties.load(new FileInputStream(envPropertiesFile))
+        for (String key : envProperties.keySet()) {
+            if (!key.startsWith("manifest")) {
+                buildConfigField "String", key.replaceAll("\\.", "_").toUpperCase(), "\"" + envProperties[key] + "\""
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility versions.sourceCompatibility
+        targetCompatibility versions.targetCompatibility
+    }
+
+    signingConfigs {
+        omiseSigningConfig {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            debuggable true
+            zipAlignEnabled true
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        buildTest {
+            applicationIdSuffix ".test"
+            minifyEnabled false
+            debuggable true
+            zipAlignEnabled true
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            debuggable false
+            zipAlignEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.omiseSigningConfig
+        }
+    }
+}
+androidExtensions {
+    experimental = true
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    deps.each { _, values ->
+        implementation values
+    }
+
+    processors.each { _, values ->
+        kapt values
+    }
+
+    tests.each { _, values ->
+        testImplementation values
+    }
+
+    androidTests.each { _, values ->
+        androidTestImplementation values
+    }
+}
+
+def getBuildVariant() {
+    for (TaskExecutionRequest t : gradle.getStartParameter().getTaskRequests()) {
+        for (String command : t.args) {
+            if (command.matches(":app:generate(.*)Sources")) {
+                return command.replaceAll(":app:generate(.*)Sources", "\$1")
+            } else if (command.matches(":app:assemble(.*)")) {
+                return command.replaceAll(":app:assemble(.*)", "\$1")
+            }
+        }
+    }
+    return "Release"
+}
