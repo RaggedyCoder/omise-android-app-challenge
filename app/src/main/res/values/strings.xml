@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Omise Charity</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="charities">Charities</string>
+    <string name="retry">Retry</string>
+    <string name="offline_please_check_connection">Offline… Please check your connection</string>
+    <string name="no_charity_list_message">Nothing to show right now. Please swipe down to refresh/fetch data.</string>
+    <string name="donation">Donation</string>
+    <string name="donator_name">Donator Name</string>
+    <string name="donation_amount">Donation Amount</string>
+    <string name="donation_info">Donation Info</string>
+    <string name="name_on_card">Name on Card</string>
+    <string name="security_code">Security code</string>
+    <string name="expiry_date">Expiry date</string>
+    <string name="year">Year</string>
+    <string name="month">Month</string>
+    <string name="make_my_donation">Make My Donation</string>
+    <string name="full_name_empty_error_message">Full name can\'t be empty.</string>
+    <string name="donation_amount_empty_error_message">Donation amount can\'t be empty.</string>
+    <string name="donation_amount_invalid_error_message">Invalid Donation amount.</string>
+    <string name="card_number_empty_error_message">Card number can\'t be empty.</string>
+    <string name="card_number_invalid_error_message">Invalid Card number.</string>
+    <string name="name_on_card_empty_error_message">Card user name can\'t be empty.</string>
+    <string name="card_expiry_month_invalid_error_message">Please select the card expiry month.</string>
+    <string name="card_expiry_year_invalid_error_message">Please select the card expiry year.</string>
+    <string name="security_code_empty_error_message">Security Code can\'t be empty.</string>
+    <string name="donation_on_progress">Donation on Progress…</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="done">Done</string>
+    <string name="donation_success_message">Your donation amount %1$s to %2$s was successful.</string>
+    <string name="success">Success</string>
+
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/charity_list_fragment">
+
+    <fragment
+        android:id="@+id/charity_list_fragment"
+        android:name="co.omise.android.charity.ui.fragment.CharityListFragment"
+        android:label="@string/charities"
+        tools:layout="@layout/fragment_charity_list">
+        <action
+            android:id="@+id/action_go_to_charity_donation_fragment"
+            app:destination="@id/charity_donation_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="charityInfo"
+                app:argType="co.omise.android.charity.model.Charity"
+                app:nullable="false" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/charity_donation_fragment"
+        android:name="co.omise.android.charity.ui.fragment.CharityDonationFragment"
+        android:label="@string/donation"
+        tools:layout="@layout/fragment_charity_donation">
+        <argument
+            android:name="charityInfo"
+            app:argType="co.omise.android.charity.model.Charity"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_go_to_charity_donation_success_fragment"
+            app:destination="@id/charity_donation_success_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="donationAmount"
+                app:argType="integer"
+                app:nullable="false" />
+
+            <argument
+                android:name="donationResponse"
+                app:argType="co.omise.android.charity.api.response.donation.DonationResponse"
+                app:nullable="false" />
+
+            <argument
+                android:name="charityInfo"
+                app:argType="co.omise.android.charity.model.Charity"
+                app:nullable="false" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/charity_donation_success_fragment"
+        android:name="co.omise.android.charity.ui.fragment.CharityDonationSuccessFragment"
+        android:label="@string/success"
+        tools:layout="@layout/fragment_charity_donation_success">
+        <argument
+            android:name="donationAmount"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <argument
+            android:name="donationResponse"
+            app:argType="co.omise.android.charity.api.response.donation.DonationResponse"
+            app:nullable="false" />
+
+        <argument
+            android:name="charityInfo"
+            app:argType="co.omise.android.charity.model.Charity"
+            app:nullable="false" />
+    </fragment>
+</navigation>

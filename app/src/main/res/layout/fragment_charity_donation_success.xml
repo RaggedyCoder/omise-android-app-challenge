@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dip_16">
+
+            <ImageView
+                android:id="@+id/charityIconImageView"
+                android:layout_width="128dip"
+                android:layout_height="128dip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/donationCompleteMessageTextView"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_8"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:text="@string/donation_success_message"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/charityIconImageView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/makeMyDonationButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dip"
+                android:padding="@dimen/dip_16"
+                android:text="@string/done"
+                app:cornerRadius="@dimen/dip_4"
+                app:layout_constraintTop_toBottomOf="@+id/donationCompleteMessageTextView"
+                app:strokeColor="@color/color_accent"
+                app:strokeWidth="@dimen/dip_2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

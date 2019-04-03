@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dip_16">
+
+            <ImageView
+                android:id="@+id/charityIconImageView"
+                android:layout_width="128dip"
+                android:layout_height="128dip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/charityNameTextView"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_8"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/charityIconImageView"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/donationInfoTitleTextView"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_16"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/donation_info"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/charityNameTextView" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fullNameTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donator_name"
+                android:textColorHint="@color/color_accent"
+                app:boxCornerRadiusBottomEnd="@dimen/dip_4"
+                app:boxCornerRadiusBottomStart="@dimen/dip_4"
+                app:boxCornerRadiusTopEnd="@dimen/dip_4"
+                app:boxCornerRadiusTopStart="@dimen/dip_4"
+                app:boxStrokeColor="@color/color_accent"
+                app:boxStrokeWidth="@dimen/dip_4"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/donationInfoTitleTextView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fullNameTextInputEditText"
+                    style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/donationAmountTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donation_amount"
+                android:textColorHint="@color/color_accent"
+                app:boxCornerRadiusBottomEnd="@dimen/dip_4"
+                app:boxCornerRadiusBottomStart="@dimen/dip_4"
+                app:boxCornerRadiusTopEnd="@dimen/dip_4"
+                app:boxCornerRadiusTopStart="@dimen/dip_4"
+                app:boxStrokeColor="@color/color_accent"
+                app:boxStrokeWidth="@dimen/dip_4"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fullNameTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/donationAmountTextInputEditText"
+                    style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/cardNumberTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_card_number"
+                android:textColorHint="@color/color_accent"
+                app:boxCornerRadiusBottomEnd="@dimen/dip_4"
+                app:boxCornerRadiusBottomStart="@dimen/dip_4"
+                app:boxCornerRadiusTopEnd="@dimen/dip_4"
+                app:boxCornerRadiusTopStart="@dimen/dip_4"
+                app:boxStrokeColor="@color/color_accent"
+                app:boxStrokeWidth="@dimen/dip_4"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/donationAmountTextInputLayout">
+
+                <co.omise.android.charity.ui.widget.CardNumberEditText
+                    android:id="@+id/cardNumberEditText"
+                    style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/dip_4"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameOnCardTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_on_card"
+                android:textColorHint="@color/color_accent"
+                app:boxCornerRadiusBottomEnd="@dimen/dip_4"
+                app:boxCornerRadiusBottomStart="@dimen/dip_4"
+                app:boxCornerRadiusTopEnd="@dimen/dip_4"
+                app:boxCornerRadiusTopStart="@dimen/dip_4"
+                app:boxStrokeColor="@color/color_accent"
+                app:boxStrokeWidth="@dimen/dip_4"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardNumberTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameOnCardTextInputEditText"
+                    style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:nextFocusForward="@+id/expiryMonthSpinner" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/cardSecurityInfoHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameOnCardTextInputLayout">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".60"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/expiryDateTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/expiry_date"
+                        android:textColor="@color/color_accent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/expiryMonthSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:nextFocusForward="@id/spinner_expiry_year"
+                            android:prompt="@string/month"
+                            android:spinnerMode="dialog" />
+
+                        <Spinner
+                            android:id="@+id/expiryYearSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:nextFocusForward="@id/edit_security_code"
+                            android:prompt="@string/year"
+                            android:spinnerMode="dialog" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/securityCodeTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".40"
+                    android:hint="@string/security_code"
+                    android:textColorHint="@color/color_accent"
+                    app:boxCornerRadiusBottomEnd="@dimen/dip_4"
+                    app:boxCornerRadiusBottomStart="@dimen/dip_4"
+                    app:boxCornerRadiusTopEnd="@dimen/dip_4"
+                    app:boxCornerRadiusTopStart="@dimen/dip_4"
+                    app:boxStrokeColor="@color/color_accent"
+                    app:boxStrokeWidth="@dimen/dip_4"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/securityCodeTextInputEditText"
+                        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberPassword"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/makeMyDonationButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dip_16"
+                android:text="@string/make_my_donation"
+                app:cornerRadius="@dimen/dip_4"
+                app:layout_constraintTop_toBottomOf="@+id/cardSecurityInfoHolder"
+                app:strokeColor="@color/color_accent"
+                app:strokeWidth="@dimen/dip_2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>
